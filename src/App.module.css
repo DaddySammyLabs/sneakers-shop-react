@@ -1,0 +1,41 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+
+.app {
+  padding-bottom: 10px;
+  margin: 30px auto;
+}
+
+.line {
+  border: 0;
+  height: 0.8px;
+  background-color: #d2d2d2;
+}
+.footer {
+  text-align: center;
+  font-size: 32px;
+  font-weight: 700;
+  margin: 10px auto;
+  background: linear-gradient(
+    to right,
+    #4824ff,
+    #4824ff,
+    #85ebff,
+    #eeebff,
+    #85ebff,
+    #4824ff,
+    #4824ff
+  );
+  color: transparent;
+  background-clip: text;
+  background-size: 200%;
+  animation: gradientAnimation 5s linear infinite;
+}
+
+@keyframes gradientAnimation {
+  0% {
+    background-position: 200% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}

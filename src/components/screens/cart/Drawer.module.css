@@ -1,0 +1,62 @@
+/* Drawer.module.css */
+
+.overlay {
+  opacity: 0;
+  visibility: hidden;
+  /* transition-delay: 0.2s; */
+  /* transition: all 0.5s ease-in-out; */
+
+  z-index: 10;
+  /* overflow-y: auto; */
+}
+
+.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* .animated.show .modal {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, -50%);
+} */
+
+/* .cart */
+.drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 1001;
+
+  width: 400px;
+  height: 100vh;
+  background: white;
+
+  transform: translateX(100%);
+  transition: transform 0.3s ease;
+}
+
+.drawer.open {
+  transform: translateX(0);
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  /* background: rgba(0, 0, 0, 0.4); */
+  z-index: 1000;
+
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.3s ease,
+    visibility 0s linear 0.3s;
+}
+
+.overlay.show {
+  opacity: 1;
+  visibility: visible;
+  transition:
+    opacity 0.3s ease,
+    visibility 0s linear 0s;
+}

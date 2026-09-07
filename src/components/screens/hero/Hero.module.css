@@ -1,0 +1,62 @@
+/* Hero.module.css */
+
+.hero {
+  /* height: 200px; */
+  background-color: #f4efe9;
+  margin: 30px auto;
+}
+
+.heroMobile img {
+  object-fit: cover;
+  border-radius: 40px;
+}
+
+@media (max-width: 1223px) {
+  .hero {
+    height: 250px;
+  }
+
+  .heroInfo {
+    top: 60px;
+    left: 8%;
+  }
+
+  .heroInfo h2 {
+    font-size: 40px;
+  }
+}
+
+@media (max-width: 1023px) {
+  .hero .logo {
+    top: 8px;
+    left: 8px;
+    width: 100px;
+  }
+  .heroInfo {
+    top: 45px;
+    left: 10%;
+  }
+
+  .heroInfo h2 {
+    font-size: 35px;
+  }
+
+  .heroInfo button {
+    width: 120px;
+    padding: 8px 15px;
+    font-size: 13px;
+    margin-top: 5px;
+  }
+}
+
+@media (max-width: 500px) {
+  .hero {
+    height: 200px;
+  }
+}
+
+@media (min-width: 1224px) {
+  .hero {
+    height: 320px;
+  }
+}

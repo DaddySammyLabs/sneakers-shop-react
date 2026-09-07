@@ -1,0 +1,35 @@
+/* Card.module.css */
+
+.cardList {
+  display: grid;
+  /* grid-template-columns: repeat(1, 300px); */
+  grid-template-columns: repeat(2, 1fr);
+
+  justify-content: center;
+  width: 74%;
+  margin: 40px auto;
+}
+
+@media (min-width: 500px) {
+  .cardList {
+    width: 92%;
+  }
+}
+
+@media (min-width: 768px) {
+  .cardList {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1124px) {
+  .cardList {
+    grid-template-columns: repeat(4, 1fr);
+    width: 86%;
+  }
+}
+@media (min-width: 1400px) {
+  .productCard {
+    padding: 32px; /* p-8 */
+  }
+}

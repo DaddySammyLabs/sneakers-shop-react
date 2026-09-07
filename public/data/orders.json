@@ -1,0 +1,26 @@
+[
+  {
+    "items": [
+      {
+        "id": 6,
+        "title": "Кроссовки Black Edition",
+        "price": 16999,
+        "imageUrl": "/sneakers/sneakers-6.jpg"
+      },
+      {
+        "id": 9,
+        "title": "Кроссовки Nike Air Force 1",
+        "price": 5900,
+        "imageUrl": "/sneakers/sneakers-9.jpg"
+      },
+      {
+        "id": 5,
+        "title": "Кроссовки Future Rider",
+        "price": 9550,
+        "imageUrl": "/sneakers/sneakers-5.jpg"
+      }
+    ],
+    "totalPrice": 32449,
+    "id": 1
+  }
+]

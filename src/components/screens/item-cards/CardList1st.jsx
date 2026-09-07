@@ -1,0 +1,134 @@
+import React from "react";
+import styles from "./Card.module.css";
+import { useAutoAnimate } from "@formkit/auto-animate/react";
+import ContentLoader from "react-content-loader";
+
+export const CardList = ({
+  items,
+  cartItems,
+
+  addItemToCart,
+  removeItemFromCart,
+
+  favorites,
+  addToFavorite,
+  removeFromFavorites,
+
+  searchValue,
+}) => {
+  const [parent] = useAutoAnimate();
+
+  const filteredItems = items.filter((item) =>
+    item.title.toLowerCase().includes(searchValue.toLowerCase()),
+  );
+
+  return (
+    <>
+      <div
+        ref={parent}
+        className={`${styles.cardList} grid grid-cols-4 gap-5 `}
+      >
+        {filteredItems.map((item) => (
+          <Card
+            key={item.id}
+            {...item}
+            cartItems={cartItems}
+            addItemToCart={addItemToCart}
+            removeItemFromCart={removeItemFromCart}
+            favorites={favorites}
+            addToFavorite={addToFavorite}
+            removeFromFavorites={removeFromFavorites}
+          />
+        ))}
+      </div>
+    </>
+  );
+};
+
+export const Card = ({
+  id,
+  title,
+  price,
+  imageUrl,
+  cartItems,
+
+  addItemToCart,
+  removeItemFromCart,
+
+  favorites,
+  addToFavorite,
+  removeFromFavorites,
+}) => {
+  const isInCart = cartItems.some((item) => item.itemId === id);
+
+  const handleCartClick = () => {
+    const cartItem = cartItems.find((item) => item.itemId === id);
+
+    if (cartItem) {
+      removeItemFromCart(cartItem.id);
+    } else {
+      addItemToCart({ id, title, price, imageUrl });
+    }
+  };
+
+  // favorites
+
+  const isInFavorites = favorites.some((item) => item.itemId === id);
+
+  const handleLikeClick = () => {
+    const FavoritesItem = favorites.find((item) => item.itemId === id);
+
+    if (FavoritesItem) {
+      removeFromFavorites(FavoritesItem.id);
+    } else {
+      addToFavorite({ id, title, price, imageUrl });
+    }
+  };
+
+  return (
+    <div
+      className={`${styles.productCard} relative bg-white border border-slate-100 rounded-xl p-5 cursor-pointer hover:-translate-y-2 hover:shadow-xl transition`}
+    >
+      <img
+        onClick={handleLikeClick}
+        src={`/icons/${!isInFavorites ? "like-1.svg" : "like-2.svg"}`}
+        alt="Like-empty"
+        className="absolute top-8 left-8"
+      />
+      <img className={styles.imageSneaker} src={imageUrl} alt="Sneaker" />
+      <p className="mt-2"> {title}</p>
+
+      <div className="flex justify-between mt-5">
+        <div className="flex flex-col">
+          <span className="text-slate-400">Цена</span>
+          <b> {price} руб.</b>
+        </div>
+
+        <img
+          onClick={handleCartClick}
+          src={`/icons/${isInCart ? "checked.svg" : "plus.svg"}`}
+          alt={isInCart ? "Удалить из корзины" : "Добавить в корзину"}
+        />
+      </div>
+    </div>
+  );
+};
+
+// 2nd logic before useCart.js
+// const addCart = () => {
+//   if (isInCart) {
+//     setCartItems((prev) => prev.filter((item) => item.id !== id));
+//   } else {
+//     addItemToCart({ id, title, price, imageUrl });
+//   }
+// };
+
+// 1st logic - by me Yusuf
+// const cart = useToggle();
+// const addCart = () => {
+//   addItemToCart({ id, title, price, imageUrl });
+//   cart.toggle();
+// };
+// .jsx part ->
+// onClick={cart.toggle}
+// src={`/icons/${!cart.value ? "plus.svg" : "checked.svg"}`}

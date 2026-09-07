@@ -1,0 +1,22 @@
+.navbar {
+  margin-top: 20px;
+  padding: 20px;
+  /* flex-wrap: wrap; */
+}
+
+.navbarList {
+  justify-content: center;
+  /* flex-wrap: wrap; */
+  /* flex-direction: column; */
+}
+
+@media (max-width: 500px) {
+  .navbarList {
+    gap: 20px;
+  }
+}
+@media (min-width: 768px) {
+  .navbarList li {
+    gap: 8px;
+  }
+}

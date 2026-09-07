@@ -1,0 +1,21 @@
+.navbar {
+  margin-top: 20px;
+  padding: 20px;
+  /* flex-wrap: wrap; */
+}
+
+.navbarList {
+  justify-content: center;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+
+.menu {
+  width: 40px;
+}
+.menu img {
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+}

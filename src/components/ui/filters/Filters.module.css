@@ -1,0 +1,32 @@
+.filters h2 {
+  padding: 0px 20px;
+}
+
+.filters h2 {
+  margin-bottom: 8px;
+  margin-top: -15px;
+}
+
+.selectFilter {
+  flex-wrap: wrap;
+  justify-content: center;
+
+  margin-bottom: 20px;
+}
+
+.selectFilter input,
+.selectFilter select {
+  padding: 8px 17px;
+  width: 220px;
+}
+
+.selectFilter input {
+  padding-left: 40px;
+}
+
+@media (min-width: 768px) {
+  .selectFilter select,
+  .selectFilter input {
+    width: auto;
+  }
+}
