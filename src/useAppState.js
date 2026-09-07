@@ -6,6 +6,7 @@ import useLanguage from "./hooks/useLanguage";
 import useTheme from "./hooks/useTheme";
 import useModal from "./hooks/useModal";
 import useResize from "./hooks/useResize";
+import useScroll from "./hooks/useScroll.js";
 
 import useCart from "./hooks/useCart";
 import useOrders from "./hooks/useOrders.js";
@@ -19,32 +20,7 @@ const useAppState = () => {
   const { theme, toggleTheme } = useTheme();
   const { isOpen, open, close } = useModal();
   const isMobile = useResize();
-
-  const [scroll, setScroll] = useState(0);
-  const scrollUp = () => {
-    setScroll(window.scrollX);
-  };
-
-  const upButton = () => {
-    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-  };
-
-  useState(() => {
-    window.addEventListener("scroll", scrollUp);
-  }, []);
-
-  const toBlock = (height) => {
-    window.scrollTo({ top: height, left: 0, behavior: "smooth" });
-  };
-
-  useEffect(() => {
-    const handleScroll = () => setScroll(window.scrollY);
-
-    window.addEventListener("scroll", handleScroll);
-
-    // cleanup
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  const { scroll, upButton, toBlock } = useScroll();
 
   const {
     cartDrawer,
