@@ -30,53 +30,67 @@ Repository: [Add your GitHub repository URL here]
 ⬆️ Smooth scrolling
 🧩 Reusable React components
 
+---
+
 ## 🛠️ Tech Stack
 
-**Core**
-React
-JavaScript (ES6+)
-Vite
-React Router
-Styling
-Tailwind CSS
-CSS Modules
-Global CSS
-State & Logic
-React Hooks
-Context API
-Custom Hooks
-Libraries
-@formkit/auto-animate
-🧠 Architecture
+### ⚛️ Core
+
+- **React**
+- **JavaScript (ES6+)**
+- **Vite**
+- **React Router**
+
+### 🎨 Styling
+
+- **Tailwind CSS**
+- **CSS Modules**
+- **Global CSS**
+
+### 🧠 State & Logic
+
+- **React Hooks**
+- **Context API**
+- **Custom Hooks**
+
+### 📦 Libraries
+
+- **@formkit/auto-animate**
+
+---
+
+## 🧠 Architecture
 
 The application is organized around reusable components and custom hooks.
 
 The main goal was to keep UI components focused on presentation while moving reusable business logic into separate hooks.
 
+```
 User Interaction
-│
-▼
-React Components
-│
-▼
-Custom Hooks
-│
-├── useCart
-├── useFavorites
-├── useOrders
-├── useFilters
-├── useTheme
-├── useModal
-├── useToggle
-└── useResize
-│
-▼
+        │
+        ▼
+    React Components
+        │
+        ▼
+    Custom Hooks
+        │
+        ├── useCart
+        ├── useFavorites
+        ├── useOrders
+        ├── useFilters
+        ├── useTheme
+        ├── useModal
+        ├── useToggle
+        └── useResize
+        │
+        ▼
 Application State
-│
-▼
-API
+        │
+        ▼
+        API
+```
 
-Application State
+## Application State
 
 useAppState.js acts as a central layer that combines different pieces of application logic.
 
@@ -84,6 +98,7 @@ Instead of keeping all logic inside App.jsx, functionality is divided between sp
 
 For example:
 
+```
 useAppState
 ├── useCart
 ├── useFavorites
@@ -93,14 +108,15 @@ useAppState
 ├── useModal
 ├── useResize
 └── useLanguage
+```
 
 This makes individual features easier to maintain and reuse.
 
-🪝 Custom Hooks
+## 🪝 Custom Hooks
 
 One of the main goals of the project was to practice creating reusable custom hooks.
 
-useCart
+### useCart
 
 Responsible for shopping cart functionality:
 
@@ -108,11 +124,12 @@ Adding products
 Removing products
 Managing cart items
 Opening and closing the cart drawer
-useFavorites
+
+### useFavorites
 
 Handles the user's favorite products.
 
-useOrders
+### useOrders
 
 Responsible for order-related logic:
 
@@ -120,30 +137,31 @@ Creating orders
 Managing order state
 Completing orders
 Removing orders
-useFilters
+
+### useFilters
 
 Handles catalog filtering:
-
 Product search
 Sorting by name
 Sorting by price
-useTheme
+
+### useTheme
 
 Controls the application theme and allows users to switch between light and dark modes.
 
-useModal
+### useModal
 
 Provides reusable modal state management.
 
-useToggle
+### useToggle
 
 A small reusable hook for boolean state values.
 
-useResize
+### useResize
 
 Tracks the viewport size and allows the application to adjust its behavior for mobile devices.
 
-🌐 Multilingual Support
+## 🌐 Multilingual Support
 
 The application supports multiple languages.
 
@@ -155,22 +173,25 @@ Language-related functionality is located in the providers directory.
 
 This approach keeps text content separated from UI components and makes adding additional languages easier.
 
-🧭 Routing
+## 🧭 Routing
 
 The application uses React Router for client-side navigation.
 
 Main routes include:
 
+```
 / → Home / Product Catalog
 /favorites → Favorite Products
 /orders → User Orders
+```
 
 Navigation between pages happens without a full browser reload.
 
-🛒 Shopping Experience
+## 🛒 Shopping Experience
 
 The application provides a complete basic shopping flow:
 
+```
 Browse Products
 ↓
 Search / Sort
@@ -182,10 +203,11 @@ Review Cart
 Create Order
 ↓
 View Orders
+```
 
 Users can also save products to favorites and return to them later.
 
-🔎 Search & Sorting
+### 🔎 Search & Sorting
 
 The product catalog supports dynamic search and sorting.
 
@@ -199,13 +221,13 @@ Search is performed based on the product title.
 
 Filtering and sorting logic is isolated in the useFilters hook rather than being implemented directly inside the product components.
 
-❤️ Favorites
+### ❤️ Favorites
 
 Users can save products to a favorites list.
 
 The favorites page reuses the same product card component as the main catalog, demonstrating component reusability across different pages.
 
-📦 Orders
+### 📦 Orders
 
 After adding products to the cart, users can create an order and access their order history.
 
@@ -213,19 +235,19 @@ The order-related logic is separated into useOrders and service.orders.js.
 
 This structure makes the application easier to extend with a real backend in the future.
 
-⏳ Loading States
+### ⏳ Loading States
 
 Product loading is represented with skeleton components instead of leaving the page empty.
 
 This improves the perceived loading experience and provides visual feedback while data is being retrieved.
 
-✨ Animations
+### ✨ Animations
 
 The project uses @formkit/auto-animate to create smooth transitions when the product list changes.
 
 For example, animations are applied when products are filtered or sorted.
 
-📱 Responsive Design
+### 📱 Responsive Design
 
 The interface is designed to work across different screen sizes.
 
@@ -238,7 +260,9 @@ Adaptive component behavior
 
 The goal was to keep the main shopping experience usable on both desktop and mobile devices.
 
-📁 Project Structure
+## 📁 Project Structure
+
+```
 src/
 ├── api/
 │ ├── service.items.js
@@ -278,8 +302,9 @@ public/
 ├── icons/
 └── images/
 └── sneakers/
+```
 
-🔌 API Layer
+## 🔌 API Layer
 
 API-related functionality is separated from the UI.
 
@@ -291,7 +316,7 @@ service.items.js is responsible for retrieving product data, while service.order
 
 Keeping API logic separate makes it easier to replace mock/local data with a real backend API later.
 
-🎯 What I Practiced
+## 🎯 What I Practiced
 
 This project helped me practice several important frontend concepts:
 
@@ -310,7 +335,8 @@ Implementing multilingual UI
 Creating loading states
 Adding UI animations
 Structuring a React project for scalability
-🔮 Future Improvements
+
+### 🔮 Future Improvements
 
 The project can be extended with several features:
 
@@ -327,7 +353,8 @@ The project can be extended with several features:
 📄 Pagination or infinite scrolling
 🔔 Toast notifications
 🧾 More detailed order history
-💻 Installation
+
+### 💻 Installation
 
 Clone the repository:
 
@@ -335,21 +362,21 @@ git clone https://github.com/your-username/react-sneaker-store.git
 
 Navigate to the project:
 
-cd react-sneaker-store
+`cd react-sneaker-store`
 
 Install dependencies:
 
-npm install
+`npm install`
 
 Start the development server:
 
-npm run dev
+`npm run dev`
 
 Build the project for production:
 
-npm run build
+`npm run build`
 
-👨‍💻 About
+## 👨‍💻 About
 
 This project is part of my frontend development portfolio.
 
