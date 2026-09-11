@@ -2,27 +2,24 @@ import React from "react";
 import styles from "./Orders.module.css";
 import Card from "@/components/screens/item-cards/Card";
 
+import { useApp } from "@/context/AppContext";
 import { useUser } from "@/context/UserContext";
 
-const Orders = ({
-  texts,
-  cartItems,
-  orders,
-  removeOrder,
-  shouldRemoveOrder,
-  setShouldRemoveOrder,
+const Orders = ({ texts }) => {
+  const {
+    cartItems,
+    orders,
+    removeOrder,
+    shouldRemoveOrder,
+    setShouldRemoveOrder,
 
-  favorites,
-  addToFavorite,
-  removeFromFavorites,
+    favorites,
+    addToFavorite,
+    removeFromFavorites,
 
-  addItemToCart,
-  removeItemFromCart,
-}) => {
-  // const orderSuccess = () => {
-  //   removeOrder(order.id)
-  //   setShouldRemoveOrder(true)
-  // }
+    addItemToCart,
+    removeItemFromCart,
+  } = useApp();
 
   const { username } = useUser();
   return (

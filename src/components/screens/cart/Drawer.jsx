@@ -2,33 +2,44 @@ import React from "react";
 import styles from "./Drawer.module.css";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 
+import { useApp } from "@/context/AppContext";
+
 import CartHeader from "./cart-details/CartHeader";
 import InfoBlock from "./cart-details/InfoBlock";
 import CartItem from "./cart-item/CartItem";
 import CartFooter from "./cart-details/CartFooter";
-
-const Drawer = ({
-  isCartOpen,
-  closeCart,
-  cartItems = [],
-
-  removeItemFromCart,
-
-  createOrder,
-  handleOrderClick,
-  isOrderComplete,
-  setIsOrderComplete,
-}) => {
+// isCartOpen,
+// closeCart,
+// cartItems = [],
+// removeItemFromCart,
+// createOrder,
+// handleOrderClick,
+// isOrderComplete,
+// setIsOrderComplete,
+const Drawer = () => {
+  const {
+    cartDrawer,
+    cartItems,
+    removeItemFromCart,
+    createOrder,
+    handleOrderClick,
+    isOrderComplete,
+    setIsOrderComplete,
+  } = useApp();
   const [itemsParent] = useAutoAnimate();
 
   const onCloseCart = () => {
-    closeCart();
+    // closeCart();
+    cartDrawer.remove();
     setIsOrderComplete(false);
   };
   return (
     <>
       {/* <div> */}
-      <div className={`${styles.overlay}  ${isCartOpen ? styles.show : ""}`}>
+      <div
+        // isCartOpen === cartDrawer.value , closeCart() === cartDrawer.remove();
+        className={`${styles.overlay}  ${cartDrawer.value ? styles.show : ""}`}
+      >
         <div className="fixed top-0 left-0 h-full w-full bg-black z-10 opacity-70"></div>
 
         <div

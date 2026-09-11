@@ -1,30 +1,21 @@
-// src/context/AppContext.jsx
+import { createContext, useContext } from "react";
 
-import { createContext, useContext, useState } from "react";
+import useAppState from "@/useAppState";
 
 const AppContext = createContext(null);
 
 export const AppProvider = ({ children }) => {
-  const [items, setItems] = useState([]);
-  const [cartItems, setCartItems] = useState([]);
-  const [favorites, setFavorites] = useState([]);
+  const appState = useAppState();
 
-  return (
-    <AppContext.Provider
-      value={{
-        items,
-        setItems,
-        cartItems,
-        setCartItems,
-        favorites,
-        setFavorites,
-      }}
-    >
-      {children}
-    </AppContext.Provider>
-  );
+  return <AppContext.Provider value={appState}>{children}</AppContext.Provider>;
 };
 
 export const useApp = () => {
-  return useContext(AppContext);
+  const context = useContext(AppContext);
+
+  if (!context) {
+    throw new Error("useApp must be used inside AppProvider");
+  }
+
+  return context;
 };

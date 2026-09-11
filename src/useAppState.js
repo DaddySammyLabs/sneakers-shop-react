@@ -1,5 +1,3 @@
-import { createContext, useEffect, useState } from "react";
-
 import { serviceItems } from "./api/service.items.js";
 
 import useLanguage from "./hooks/useLanguage";
@@ -12,8 +10,6 @@ import useCart from "./hooks/useCart";
 import useOrders from "./hooks/useOrders.js";
 import useFilters from "./hooks/useFilters";
 import useFavorites from "./hooks/useFavorites.js";
-
-const AppContext = createContext({});
 
 const useAppState = () => {
   const { language, setLanguage } = useLanguage();

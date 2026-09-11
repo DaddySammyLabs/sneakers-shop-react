@@ -1,15 +1,17 @@
 import React from "react";
 import styles from "./Favorites.module.css";
+import { useApp } from "@/context/AppContext";
 import Card from "@/components/screens/item-cards/Card";
 
-const Favorites = ({
-  favorites,
-  cartItems,
-  addItemToCart,
-  removeItemFromCart,
-  addToFavorite,
-  removeFromFavorites,
-}) => {
+const Favorites = ({}) => {
+  const {
+    favorites,
+    cartItems,
+    addItemToCart,
+    removeItemFromCart,
+    addToFavorite,
+    removeFromFavorites,
+  } = useApp();
   return (
     <>
       {/* <div

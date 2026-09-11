@@ -1,4 +1,5 @@
 import React from "react";
+import { useApp } from "@/context/AppContext";
 
 import Hero from "@/components/screens/hero/Hero";
 import Filters from "@/components/ui/filters/Filters";
@@ -6,27 +7,46 @@ import { CardList } from "@/components/screens/item-cards/CardList";
 
 const Home = ({
   texts,
-  items,
-  loading,
+  // items,
+  // loading,
 
-  cartItems,
+  // cartItems,
 
-  addItemToCart,
-  removeItemFromCart,
-  // isInCart,
-  // handleCartClick,
+  // addItemToCart,
+  // removeItemFromCart,
 
-  favorites,
-  addToFavorite,
-  removeFromFavorites,
+  // favorites,
+  // addToFavorite,
+  // removeFromFavorites,
 
-  searchValue,
-  onChangeSearchValue,
-  clearInput,
+  // searchValue,
+  // onChangeSearchValue,
+  // clearInput,
 
-  sortValue,
-  onChangeSortValue,
+  // sortValue,
+  // onChangeSortValue,
 }) => {
+  const {
+    items,
+    loading,
+
+    cartItems,
+
+    addItemToCart,
+    removeItemFromCart,
+
+    favorites,
+    addToFavorite,
+    removeFromFavorites,
+
+    searchValue,
+    onChangeSearchValue,
+    clearInput,
+
+    sortValue,
+    onChangeSortValue,
+  } = useApp();
+
   return (
     <>
       <Hero />
@@ -48,8 +68,6 @@ const Home = ({
         favorites={favorites}
         addToFavorite={addToFavorite}
         removeFromFavorites={removeFromFavorites}
-        // isInCart={isInCart}
-        // handleCartClick={handleCartClick}
         searchValue={searchValue}
       />
     </>

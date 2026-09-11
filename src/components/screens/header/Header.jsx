@@ -2,23 +2,23 @@ import React from "react";
 import styles from "./Header.module.css";
 
 import { Link } from "react-router-dom";
+import { useApp } from "@/context/AppContext";
+import ModalMenu from "@/components/ui/modal/modal-menu/ModalMenu";
 
 import HeaderMobile from "./header-mobile/HeaderMobile";
 
-import ModalMenu from "@/components/ui/modal/modal-menu/ModalMenu";
-
-const Header = ({
-  isMobile,
-  texts,
-  isOpenModal,
-  openModal,
-  closeModal,
-  theme,
-  toggleTheme,
-  language,
-  setLanguage,
-  openCart,
-}) => {
+const Header = ({ texts }) => {
+  const {
+    isOpen,
+    open,
+    close,
+    language,
+    setLanguage,
+    theme,
+    toggleTheme,
+    cartDrawer,
+    isMobile,
+  } = useApp();
   return (
     <>
       {!isMobile ? (
@@ -38,7 +38,7 @@ const Header = ({
 
           <ul className={`${styles.navbarList} flex items-center gap-10`}>
             <li
-              onClick={openCart}
+              onClick={cartDrawer.add}
               // onClick={cartDrawer.add}
               className="flex items-center gap-1.5 text-gray-500 hover:text-black cursor-pointer"
             >
@@ -60,7 +60,7 @@ const Header = ({
             </Link>
           </ul>
 
-          <span type="button" className={`${styles.menu}`} onClick={openModal}>
+          <span type="button" className={`${styles.menu}`} onClick={open}>
             {/* <img
             src={theme === "light" ? "/icons/bars_dark.svg" : "/icons/bars.svg"}
             alt="menu-navbar"
@@ -68,8 +68,8 @@ const Header = ({
             <img src={"/icons/bars_dark.svg"} alt="menu-navbar" />
           </span>
           <ModalMenu
-            show={isOpenModal}
-            onClose={closeModal}
+            show={isOpen}
+            onClose={close}
             language={language}
             setLanguage={setLanguage}
           />
@@ -78,14 +78,15 @@ const Header = ({
         <HeaderMobile
           texts={texts}
           theme={theme}
-          isOpenModal={isOpenModal}
-          openModal={openModal}
-          closeModal={closeModal}
+          isOpenModal={isOpen}
+          openModal={open}
+          closeModal={close}
           toggleTheme={toggleTheme}
           language={language}
           setLanguage={setLanguage}
           isMobile={isMobile}
-          openCart={openCart}
+          openCart={cartDrawer.add}
+          closeCart={cartDrawer.remove}
         />
       )}
     </>
