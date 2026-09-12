@@ -15,7 +15,7 @@ const useCart = () => {
 
         setCartItems(data);
       } catch (error) {
-        console.error(error);
+        console.error("Failed to fetch cart:", error);
       }
     };
 
@@ -24,7 +24,6 @@ const useCart = () => {
 
   const addItemToCart = async (obj) => {
     try {
-      // const { data } = await API.post("/cart", obj);
       const { data } = await API.post(ENDPOINTS.CART, {
         itemId: obj.id,
         title: obj.title,
@@ -34,7 +33,7 @@ const useCart = () => {
 
       setCartItems((prevItems) => [...prevItems, data]);
     } catch (error) {
-      console.error(error);
+      console.error("Failed to add item to cart:", error);
     }
   };
 
@@ -44,21 +43,14 @@ const useCart = () => {
 
       setCartItems((prevItems) => prevItems.filter((item) => item.id !== id));
     } catch (error) {
-      console.error(error);
+      console.error("Failed to remove item from cart:", error);
     }
   };
 
-  // const isInCart = cartItems.some((item) => item.itemId === id);
-
-  // const handleCartClick = () => {
-  //   const cartItem = cartItems.find((item) => item.itemId === id);
-
-  //   if (cartItem) {
-  //     removeItemFromCart(cartItem.id);
-  //   } else {
-  //     addItemToCart({ id, title, price, imageUrl });
-  //   }
-  // };
+  const totalPrice = cartItems.reduce(
+    (sum, item) => sum + Number(item.price),
+    0,
+  );
 
   return {
     cartDrawer,
@@ -66,28 +58,61 @@ const useCart = () => {
     cartItems,
     setCartItems,
 
+    totalPrice,
+
     addItemToCart,
     removeItemFromCart,
-
-    // isInCart,
-    // handleCartClick,
   };
 };
 
 export default useCart;
 
-// useEffect(() => {
-//   API.get("/cart").then((res) => {
-//     setCartItems(res.data);
-//   });
-// }, []);
+// Для json-server нужно действительно удалить товары из /cart.
+// В таком случае лучше добавить в useCart отдельную функцию:
 
-// const addItemToCart = (obj) => {
-//   API.post("/cart", [...cartItems, obj]);
-//   setCartItems((prevItems) => [...prevItems, obj]);
+// const clearCart = async () => {
+//   try {
+//     await Promise.all(
+//       cartItems.map((item) =>
+//         API.delete(`${ENDPOINTS.CART}/${item.id}`),
+//       ),
+//     );
+
+//     setCartItems([]);
+//   } catch (error) {
+//     console.error("Failed to clear cart:", error);
+//   }
 // };
 
-// const removeItemFromCart = (id) => {
-//   API.delete(`/cart${id}`);
-//   setCartItems((prevItems) => prevItems.filter((item) => item.id !== id));
+// И вернуть:
+
+// return {
+//   cartDrawer,
+//   cartItems,
+//   setCartItems,
+//   totalPrice,
+//   addItemToCart,
+//   removeItemFromCart,
+//   clearCart,
 // };
+
+// Тогда useOrders получает:
+// const {
+//   cartItems,
+//   totalPrice,
+//   clearCart,
+// } = ...
+
+// и после создания:
+// const { data } = await API.post(ENDPOINTS.ORDERS, {
+//   items: cartItems,
+//   totalPrice,
+// });
+
+// setOrders((prevOrders) => [...prevOrders, data]);
+
+// await clearCart();
+
+// setIsOrderComplete(true);
+
+// return data;

@@ -1,21 +1,10 @@
 import React from "react";
 
-const CartFooter = ({
-  createOrder,
-  removeItemFromCart,
-  handleOrderClick,
-  OrderComplete,
-  setIsOrderComplete,
-}) => {
-  // const succsess = async () => {
-  //   const order = await createOrder();
-  //   if (order) OrderComplete(order.id);
-  // };
+const CartFooter = ({ totalPrice, createOrder }) => {
+  const taxPrice = totalPrice * 0.05;
 
   const doItOrder = async () => {
-    const order = await createOrder();
-
-    if (order) OrderComplete(id);
+    await createOrder();
   };
 
   return (
@@ -26,7 +15,7 @@ const CartFooter = ({
 
           <div className="flex-1 border-b border-gray-300 border-dashed"></div>
 
-          <b> totalPrice ₽</b>
+          <b> {totalPrice} ₽</b>
         </div>
 
         <div className="flex gap-2">
@@ -34,11 +23,12 @@ const CartFooter = ({
 
           <div className="flex-1 border-b border-gray-300 border-dashed"></div>
 
-          <b> taxPrice ₽</b>
+          <b> {taxPrice} ₽</b>
         </div>
 
         <button
           onClick={doItOrder}
+          disabled={totalPrice === 0}
           className="mt-2 bg-lime-500 w-full rounded-xl py-3 text-white disabled:bg-gray-400 hover:bg-lime-600 active:bg-lime-700 cursor-pointer transition relative"
         >
           Оформить заказ

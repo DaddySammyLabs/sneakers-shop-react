@@ -8,28 +8,22 @@ import CartHeader from "./cart-details/CartHeader";
 import InfoBlock from "./cart-details/InfoBlock";
 import CartItem from "./cart-item/CartItem";
 import CartFooter from "./cart-details/CartFooter";
-// isCartOpen,
-// closeCart,
-// cartItems = [],
-// removeItemFromCart,
-// createOrder,
-// handleOrderClick,
-// isOrderComplete,
-// setIsOrderComplete,
+
 const Drawer = () => {
   const {
     cartDrawer,
     cartItems,
+    totalPrice,
     removeItemFromCart,
+
     createOrder,
-    handleOrderClick,
+
     isOrderComplete,
     setIsOrderComplete,
   } = useApp();
   const [itemsParent] = useAutoAnimate();
 
   const onCloseCart = () => {
-    // closeCart();
     cartDrawer.remove();
     setIsOrderComplete(false);
   };
@@ -37,7 +31,6 @@ const Drawer = () => {
     <>
       {/* <div> */}
       <div
-        // isCartOpen === cartDrawer.value , closeCart() === cartDrawer.remove();
         className={`${styles.overlay}  ${cartDrawer.value ? styles.show : ""}`}
       >
         <div className="fixed top-0 left-0 h-full w-full bg-black z-10 opacity-70"></div>
@@ -82,17 +75,9 @@ const Drawer = () => {
               imageUrl="/icons/order-success-icon.png"
             />
           )}
-
-          <CartFooter
-            cartItems={cartItems}
-            createOrder={createOrder}
-            OrderComplete={() => {
-              cartItems.length !== 0 && setIsOrderComplete(true);
-            }}
-            setIsOrderComplete={setIsOrderComplete}
-            handleOrderClick={handleOrderClick}
-            removeItemFromCart={removeItemFromCart}
-          />
+          {!isOrderComplete && cartItems.length > 0 && (
+            <CartFooter totalPrice={totalPrice} createOrder={createOrder} />
+          )}
         </div>
       </div>
     </>

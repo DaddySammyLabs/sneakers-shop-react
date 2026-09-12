@@ -22,10 +22,11 @@ const useAppState = () => {
     cartDrawer,
     cartItems,
     setCartItems,
+
+    totalPrice,
+
     addItemToCart,
     removeItemFromCart,
-    // isInCart,
-    // handleCartClick,
   } = useCart();
 
   const { favorites, addToFavorite, removeFromFavorites, isFavorite } =
@@ -34,15 +35,11 @@ const useAppState = () => {
   const {
     orders,
     createOrder,
-    handleOrderClick,
+    removeOrder,
 
     isOrderComplete,
     setIsOrderComplete,
-
-    removeOrder,
-    shouldRemoveOrder,
-    setShouldRemoveOrder,
-  } = useOrders({ cartItems, setCartItems, removeItemFromCart });
+  } = useOrders({ cartItems, totalPrice, setCartItems });
 
   const { items, loading } = serviceItems();
 
@@ -77,7 +74,7 @@ const useAppState = () => {
 
     cartDrawer,
     cartItems,
-
+    totalPrice,
     addItemToCart,
     removeItemFromCart,
 
@@ -88,11 +85,9 @@ const useAppState = () => {
 
     orders,
     createOrder,
+    removeOrder,
     isOrderComplete,
     setIsOrderComplete,
-    removeOrder,
-    shouldRemoveOrder,
-    setShouldRemoveOrder,
 
     searchValue,
     onChangeSearchValue,

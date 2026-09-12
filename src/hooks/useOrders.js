@@ -1,13 +1,9 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
 import { API, ENDPOINTS } from "@/api/api";
 
-const useOrders = ({ cartItems, setCartItems, removeItemFromCart }) => {
+const useOrders = ({ cartItems, setCartItems, totalPrice }) => {
   const [isOrderComplete, setIsOrderComplete] = useState(false);
   const [orders, setOrders] = useState([]);
-
-  const [totalPrice, setTotalPrice] = useState();
-  const [shouldRemoveOrder, setShouldRemoveOrder] = useState(false);
 
   useEffect(() => {
     const fetchOrders = async () => {
@@ -23,39 +19,48 @@ const useOrders = ({ cartItems, setCartItems, removeItemFromCart }) => {
     fetchOrders();
   }, []);
 
-  const createOrder = async (obj) => {
+  const createOrder = async () => {
+    if (cartItems.length === 0) {
+      return null;
+    }
+
     try {
-      const { data } = await API.post(ENDPOINTS.ORDERS, cartItems);
-      // const { data } = await API.post(ENDPOINTS.ORDERS, {
-      //   itemId: obj.id,
-      //   title: obj.title,
-      //   price: obj.price,
-      //   imageUrl: obj.imageUrl,
+      const order = {
+        items: cartItems,
+        totalPrice,
+      };
+
+      const { data } = await API.post(ENDPOINTS.ORDERS, order);
+
+      setOrders((prevOrders) => [...prevOrders, data]);
+
+      // cartItems.map((item) => {
+      //   removeItemFromCart(item.id);
       // });
-
-      setOrders((prevItems) => [...prevItems, data]);
-
-      cartItems.map((item) => {
-        removeItemFromCart(item.id);
-      });
-
       setCartItems([]);
+      setIsOrderComplete(true);
+
+      return data;
     } catch (error) {
-      console.error(error);
+      console.error("Failed to create order:", error);
+
+      return null;
     }
   };
 
   const removeOrder = async (id) => {
     try {
       await API.delete(`${ENDPOINTS.ORDERS}/${id}`);
-      setOrders((prevItems) => prevItems.filter((item) => item.id !== id));
+      setOrders((prevOrders) => prevOrders.filter((order) => order.id !== id));
     } catch (error) {
-      console.error(error);
+      console.error("Failed to remove order:", error);
     }
   };
 
+  // delete -> handleOrderClick
   const handleOrderClick = () => {
-    const cartItem = cartItems.find((item) => item.itemId === id);
+    // const cartItem = cartItems.find((item) => item.itemId === id);
+    const cartItem = cartItems.find((item) => item.id === id);
 
     if (cartItem) {
       removeItemFromCart(cartItem.id);
@@ -66,16 +71,12 @@ const useOrders = ({ cartItems, setCartItems, removeItemFromCart }) => {
 
   return {
     orders,
+
     createOrder,
-    handleOrderClick,
+    removeOrder,
 
     isOrderComplete,
     setIsOrderComplete,
-
-    removeOrder,
-
-    shouldRemoveOrder,
-    setShouldRemoveOrder,
   };
 };
 
