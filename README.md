@@ -8,7 +8,7 @@ This project was created as part of my frontend development portfolio to practic
 
 **Live Demo**: [Add your deployed project URL here]
 
-Repository: [Add your GitHub repository URL here]
+Repository: [GitHub repository URL](https://github.com/DaddySammyLabs/sneakers-shop-react)
 
 ## 📸 Preview
 
