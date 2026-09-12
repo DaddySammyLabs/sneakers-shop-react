@@ -52,9 +52,20 @@ const useCart = () => {
     0,
   );
 
+  const clearCart = async () => {
+    try {
+      await Promise.all(
+        cartItems.map((item) => API.delete(`${ENDPOINTS.CART}/${item.id}`)),
+      );
+
+      setCartItems([]);
+    } catch (error) {
+      console.error("Failed to clear cart:", error);
+    }
+  };
+
   return {
     cartDrawer,
-
     cartItems,
     setCartItems,
 
@@ -62,6 +73,7 @@ const useCart = () => {
 
     addItemToCart,
     removeItemFromCart,
+    clearCart,
   };
 };
 

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { API, ENDPOINTS } from "@/api/api";
 
-const useOrders = ({ cartItems, setCartItems, totalPrice }) => {
+const useOrders = ({ cartItems, clearCart, totalPrice }) => {
   const [isOrderComplete, setIsOrderComplete] = useState(false);
   const [orders, setOrders] = useState([]);
 
@@ -34,10 +34,9 @@ const useOrders = ({ cartItems, setCartItems, totalPrice }) => {
 
       setOrders((prevOrders) => [...prevOrders, data]);
 
-      // cartItems.map((item) => {
-      //   removeItemFromCart(item.id);
-      // });
-      setCartItems([]);
+      // setCartItems([]);
+      clearCart();
+
       setIsOrderComplete(true);
 
       return data;

@@ -27,6 +27,7 @@ const useAppState = () => {
 
     addItemToCart,
     removeItemFromCart,
+    clearCart,
   } = useCart();
 
   const { favorites, addToFavorite, removeFromFavorites, isFavorite } =
@@ -39,7 +40,7 @@ const useAppState = () => {
 
     isOrderComplete,
     setIsOrderComplete,
-  } = useOrders({ cartItems, totalPrice, setCartItems });
+  } = useOrders({ cartItems, totalPrice, clearCart });
 
   const { items, loading } = serviceItems();
 
