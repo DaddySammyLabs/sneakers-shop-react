@@ -6,9 +6,9 @@ This project was created as part of my frontend development portfolio to practic
 
 ## 🚀 Live Demo
 
-**Live Demo**: [Add your deployed project URL here]
+**Live Demo**: [Sneakers store URL](https://vue-sneakers-two-beryl.vercel.app/)
 
-Repository: [Add your GitHub repository URL here]
+Repository: [GitHub repository URL](https://github.com/DaddySammyLabs/sneakers-shop-react)
 
 ## 📸 Preview
 
