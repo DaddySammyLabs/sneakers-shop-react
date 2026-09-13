@@ -5,27 +5,7 @@ import Hero from "@/components/screens/hero/Hero";
 import Filters from "@/components/ui/filters/Filters";
 import { CardList } from "@/components/screens/item-cards/CardList";
 
-const Home = ({
-  texts,
-  // items,
-  // loading,
-
-  // cartItems,
-
-  // addItemToCart,
-  // removeItemFromCart,
-
-  // favorites,
-  // addToFavorite,
-  // removeFromFavorites,
-
-  // searchValue,
-  // onChangeSearchValue,
-  // clearInput,
-
-  // sortValue,
-  // onChangeSortValue,
-}) => {
+const Home = ({ texts }) => {
   const {
     items,
     loading,
@@ -49,9 +29,8 @@ const Home = ({
 
   return (
     <>
-      <Hero />
+      <Hero texts={texts} />
       <Filters
-        // texts={texts[language]}
         texts={texts}
         searchValue={searchValue}
         onChangeSearchValue={onChangeSearchValue}
@@ -60,6 +39,7 @@ const Home = ({
         onChangeSortValue={onChangeSortValue}
       />
       <CardList
+        texts={texts}
         items={items}
         loading={loading}
         cartItems={cartItems}

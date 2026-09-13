@@ -9,6 +9,8 @@ const Card = ({
   imageUrl,
   cartItems,
 
+  texts,
+
   addItemToCart,
   removeItemFromCart,
 
@@ -54,12 +56,18 @@ const Card = ({
           className="absolute top-8 left-8"
         />
         <img className={styles.imageSneaker} src={imageUrl} alt="Sneaker" />
-        <p className="mt-2"> {title}</p>
+        <p className="mt-2">
+          {texts.sneakers}
+          {title}
+        </p>
 
         <div className="flex justify-between mt-5">
           <div className="flex flex-col">
-            <span className="text-slate-400">Цена</span>
-            <b> {price} руб.</b>
+            <span className="text-slate-400">{texts.price}</span>
+            <b>
+              {" "}
+              {price} {texts.rubles}
+            </b>
           </div>
 
           <img

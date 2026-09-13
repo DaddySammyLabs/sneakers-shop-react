@@ -35,7 +35,7 @@ function App() {
               path="/favorites"
               element={
                 <>
-                  <Favorites />
+                  <Favorites texts={texts[language]} />
                 </>
               }
             ></Route>

@@ -15,6 +15,7 @@ const HeaderMobile = ({
   language,
   setLanguage,
   isMobile,
+  totalPrice,
   openCart,
 }) => {
   return (
@@ -54,20 +55,23 @@ const HeaderMobile = ({
               className="flex items-center gap-3 text-gray-500 hover:text-black cursor-pointer"
             >
               <img src="/icons/cart.svg" alt="Cart" />
-              <b>0 руб.</b>
+              <b className="text-sm ">
+                {totalPrice}
+                {texts.rubles}
+              </b>
             </li>
 
             <Link to="/favorites">
               <li className="flex items-center gap-3 text-gray-500 hover:text-black cursor-pointer">
                 <img src="/icons/heart.svg" alt="Cart" />
-                <span>Закладки</span>
+                <span>{texts.favorites}</span>
               </li>{" "}
             </Link>
 
             <Link to="/orders">
               <li className="flex items-center gap-3 text-gray-500 hover:text-black cursor-pointer">
                 <img src="/icons/profile.svg" alt="Cart" />
-                <span>Профиль</span>
+                <span>{texts.profile}</span>
               </li>{" "}
             </Link>
           </ul>

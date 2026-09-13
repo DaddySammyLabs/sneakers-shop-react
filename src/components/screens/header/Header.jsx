@@ -18,6 +18,7 @@ const Header = ({ texts }) => {
     toggleTheme,
     cartDrawer,
     isMobile,
+    totalPrice,
   } = useApp();
   return (
     <>
@@ -43,19 +44,21 @@ const Header = ({ texts }) => {
               className="flex items-center gap-1.5 text-gray-500 hover:text-black cursor-pointer"
             >
               <img src="/icons/cart.svg" alt="Cart" />
-              <b>руб.</b>
+              <b>
+                {totalPrice} {texts.rubles}
+              </b>
             </li>
 
             <Link to="/favorites">
               <li className="flex items-center gap-1.5 text-gray-500 hover:text-black cursor-pointer">
                 <img src="/icons/heart.svg" alt="Cart" />
-                <span>Закладки</span>
+                <span>{texts.favorites}</span>
               </li>
             </Link>
             <Link to="/orders">
               <li className="flex items-center gap-1.5 text-gray-500 hover:text-black cursor-pointer">
                 <img src="/icons/profile.svg" alt="Cart" />
-                <span>Профиль</span>
+                <span>{texts.profile}</span>
               </li>
             </Link>
           </ul>
@@ -85,6 +88,7 @@ const Header = ({ texts }) => {
           language={language}
           setLanguage={setLanguage}
           isMobile={isMobile}
+          totalPrice={totalPrice}
           openCart={cartDrawer.add}
           closeCart={cartDrawer.remove}
         />

@@ -3,7 +3,7 @@ import styles from "./Favorites.module.css";
 import { useApp } from "@/context/AppContext";
 import Card from "@/components/screens/item-cards/Card";
 
-const Favorites = ({}) => {
+const Favorites = ({ texts }) => {
   const {
     favorites,
     cartItems,
@@ -18,10 +18,11 @@ const Favorites = ({}) => {
         className={`p-10 ${styles.favItems}  ${favorites ? styles.show : ""}`}
       > */}
       <div className={`p-10 ${styles.favItems} ${styles.show}`}>
-        <h1 className="text-3xl font-bold mb-10">Favorites</h1>
+        <h1 className="text-3xl font-bold mb-10">{texts.favorites}</h1>
         <div className={`grid grid-cols-3 gap-2`}>
           {favorites.map((item) => (
             <Card
+              texts={texts}
               key={item.id}
               id={item.itemId}
               title={item.title}

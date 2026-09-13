@@ -45,18 +45,18 @@ const Orders = ({ texts }) => {
         <img src="/icons/profile.svg" alt="Profile" />
 
         <h2 className="text-xl font-bold">
-          {texts.userOrders} {username}
+          {texts.user} {username}
         </h2>
       </div>
 
-      <h1 className="text-3xl font-bold mb-2">Orders</h1>
-
-      <p className="text-slate-500 mb-10">
-        Оформленные заказы можно отменить в течение 30 минут
-      </p>
+      <h1 className="text-3xl font-bold mb-2">{texts.orders}</h1>
 
       {orders.length > 0 && (
         <div className="flex flex-col gap-6">
+          <p className="text-slate-500 mb-10">
+            Оформленные заказы можно отменить в течение 30 минут
+          </p>
+
           {orders.map((order) => (
             <div
               key={order.id}
@@ -80,6 +80,7 @@ const Orders = ({ texts }) => {
               <div className={`${styles.cardList} grid grid-cols-3 gap-2`}>
                 {order.items.map((item) => (
                   <Card
+                    texts={texts}
                     key={item.id}
                     {...item}
                     cartItems={cartItems}
@@ -98,7 +99,7 @@ const Orders = ({ texts }) => {
 
       {orders.length === 0 && (
         <div className="flex flex-col items-center mt-20">
-          <img className="w-40 opacity-60" src="/emoji-1.png" alt="" />
+          <img className="w-40 opacity-60" src="/icons/emoji-1.png" alt="" />
 
           <h2 className="text-2xl font-bold mt-5">Заказов нет</h2>
 

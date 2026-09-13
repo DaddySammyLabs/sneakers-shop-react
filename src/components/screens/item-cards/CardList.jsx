@@ -6,6 +6,8 @@ import CardSkeleton from "./CardSkeleton";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 
 export const CardList = ({
+  texts,
+
   items,
   loading,
   cartItems,
@@ -16,8 +18,6 @@ export const CardList = ({
   favorites,
   addToFavorite,
   removeFromFavorites,
-  isInCart,
-  handleCartClick,
 
   searchValue,
 }) => {
@@ -39,6 +39,7 @@ export const CardList = ({
             ))
           : filteredItems.map((item) => (
               <Card
+                texts={texts}
                 key={item.id}
                 {...item}
                 cartItems={cartItems}

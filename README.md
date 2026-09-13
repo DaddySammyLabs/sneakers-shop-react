@@ -12,6 +12,7 @@ Repository: [GitHub repository URL](https://github.com/DaddySammyLabs/sneakers-s
 
 ## 📸 Preview
 
+![Sneaker Store](src/assets/images/screenshot-sneakers-langs.png)
 ![Sneaker Store](src/assets/images/screenshot-sneakers-store.png)
 
 ## ✨ Features

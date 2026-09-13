@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./Hero.module.css";
 import useResize from "@/hooks/useResize";
 
-const Hero = () => {
+const Hero = ({ texts }) => {
   const isMobile = useResize();
 
   return (
@@ -27,12 +27,14 @@ const Hero = () => {
           >
             <div>
               <h2 className="text-5xl font-bold leading-tight">
-                <b className="font-bold text-lime-600 opacity-70">Stan Smith</b>
-                , Forever!
+                <b className="font-bold text-lime-600 opacity-70">
+                  {texts.stan}
+                </b>
+                , {texts.forever}
               </h2>
             </div>
             <button className="w-45 mt-4 bg-lime-600 rounded-3xl px-10 py-3 text-white hover:bg-lime-600 active:bg-lime-700 cursor-pointer transition opacity-60">
-              КУПИТЬ
+              {texts.buy}
             </button>
           </div>
         </div>
