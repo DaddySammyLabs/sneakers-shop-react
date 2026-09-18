@@ -53,9 +53,7 @@ const Orders = ({ texts }) => {
 
       {orders.length > 0 && (
         <div className="flex flex-col gap-6">
-          <p className="text-slate-500 mb-10">
-            Оформленные заказы можно отменить в течение 30 минут
-          </p>
+          <p className="text-slate-500 mb-10">{texts.textCancelOrder}</p>
 
           {orders.map((order) => (
             <div
@@ -63,7 +61,10 @@ const Orders = ({ texts }) => {
               className="border border-slate-200 rounded-xl p-5"
             >
               <div className="flex justify-between items-center mb-4">
-                <h2 className="text-xl font-bold">Заказ #{order.id}</h2>
+                <h2 className="text-xl font-bold">
+                  {texts.orderNumber}
+                  {order.id}
+                </h2>
 
                 <div className="flex items-center gap-4">
                   <span className="text-gray-500">{order.totalPrice} ₽</span>
@@ -72,7 +73,7 @@ const Orders = ({ texts }) => {
                     onClick={() => openRemoveModal(order.id)}
                     className="text-red-500 hover:text-red-700 transition"
                   >
-                    Отменить заказ
+                    {texts.cancelOrder}
                   </button>
                 </div>
               </div>
@@ -101,19 +102,19 @@ const Orders = ({ texts }) => {
         <div className="flex flex-col items-center mt-20">
           <img className="w-40 opacity-60" src="/icons/emoji-1.png" alt="" />
 
-          <h2 className="text-2xl font-bold mt-5">Заказов нет</h2>
+          <h2 className="text-2xl font-bold mt-5">{texts.noOrders}</h2>
 
-          <p className="text-slate-400 mt-2">Вы ещё ничего не заказывали</p>
+          <p className="text-slate-400 mt-2">{texts.haveNotOrdered}</p>
         </div>
       )}
 
       {selectedOrderId && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-white p-6 rounded-xl w-96">
-            <h2 className="text-xl font-bold mb-3">Подтверждение отмены</h2>
+            <h2 className="text-xl font-bold mb-3">{texts.confirmCancel}</h2>
 
             <p className="text-gray-600 mb-6">
-              Вы уверены, что хотите отменить заказ <b>#{selectedOrderId}</b>?
+              {texts.textYouSure} <b>#{selectedOrderId}</b>?
             </p>
 
             <div className="flex justify-end gap-3">
@@ -121,14 +122,14 @@ const Orders = ({ texts }) => {
                 onClick={closeRemoveModal}
                 className="px-4 py-2 text-gray-600 hover:text-black"
               >
-                Отмена
+                {texts.noCancelOrder}
               </button>
 
               <button
                 onClick={handleRemoveOrder}
                 className="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600"
               >
-                Да, отменить
+                {texts.cancelOrder}
               </button>
             </div>
           </div>

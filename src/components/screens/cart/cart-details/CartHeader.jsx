@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./Cart.module.css";
 
-const CartHeader = ({ closeCart }) => {
+const CartHeader = ({ texts, closeCart }) => {
   return (
     <>
       <div className={` ${styles.cartHead} flex items-center gap-5 mb-8`}>
@@ -12,7 +12,7 @@ const CartHeader = ({ closeCart }) => {
           alt="arrow"
         />
 
-        <h2 className="text-2xl font-bold">Корзина</h2>
+        <h2 className="text-2xl font-bold">{texts.cart}</h2>
       </div>
     </>
   );

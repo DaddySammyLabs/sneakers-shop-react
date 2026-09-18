@@ -18,7 +18,7 @@ function App() {
     <>
       <div className="container bg-white w-4/5 m-auto mt-14 rounded-xl shadow-xl/15">
         <div className={styles.app}>
-          <Drawer />
+          <Drawer texts={texts[language]} />
 
           <Header texts={texts[language]} />
           <Routes>

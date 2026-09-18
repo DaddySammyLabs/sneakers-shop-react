@@ -26,6 +26,7 @@ const useOrders = ({ cartItems, clearCart, totalPrice }) => {
 
     try {
       const order = {
+        // id: Date.now(),
         items: cartItems,
         totalPrice,
       };

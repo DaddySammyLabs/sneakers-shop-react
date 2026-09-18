@@ -1,6 +1,6 @@
 import React from "react";
 
-const InfoBlock = ({ description, title, imageUrl, closeCart }) => {
+const InfoBlock = ({ imageUrl, title, description, buttonBack, closeCart }) => {
   return (
     <>
       <div className="flex h-full text-center items-center leading-relaxed w-72">
@@ -12,7 +12,7 @@ const InfoBlock = ({ description, title, imageUrl, closeCart }) => {
             onClick={closeCart}
             className="mt-4 bg-lime-500 w-full rounded-3xl py-4 text-white hover:bg-lime-600 active:bg-lime-700 cursor-pointer transition relative"
           >
-            Вернуться назад
+            {buttonBack}
             <img
               className="rotate-180 absolute top-4/10 left-1/6"
               src={"/icons/arrow.svg"}
